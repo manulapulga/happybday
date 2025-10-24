@@ -174,7 +174,7 @@ def video_page():
     """, unsafe_allow_html=True)
     
     st.markdown('<div class="video-page">', unsafe_allow_html=True)
-    st.markdown('<div class="video-title">With Lots of Love</div>', unsafe_allow_html=True)
+    st.markdown('<div class="video-title">With Lots of Love, FoodeezZ d’ GWD 😋😉</div>', unsafe_allow_html=True)
     
     # Video container - simplified without the extra black card
     try:
