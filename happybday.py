@@ -12,8 +12,8 @@ def login_page():
     
     st.title("Curious? 📞")
     
-    user_id = st.text_input("User ID", placeholder="Enter your user ID (all small 10 chars)")
-    password = st.text_input("Password", type="password", placeholder="Enter your password (all small 10 chars)")
+    user_id = st.text_input("room", placeholder="Enter your user ID (all small 10 chars)")
+    password = st.text_input("vroom", type="password", placeholder="Enter your password (all small 10 chars)")
     
     if st.button("Login"):
         if user_id == "datacentre" and password == "spitivalley":
