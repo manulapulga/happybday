@@ -21,7 +21,7 @@ def login_page():
             st.session_state.current_page = "birthday_card"
             st.rerun()
         else:
-            st.error("😕 User ID or password incorrect")
+            st.error("അയ്യേ  പൂയ് പൂയ് .,ല്ലോണം  ആലോചിക് ")
 
 def birthday_card_page():
     # Compact birthday card styling
