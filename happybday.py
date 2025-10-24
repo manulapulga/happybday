@@ -1,78 +1,245 @@
 import streamlit as st
-import hashlib
 
-def check_password():
-    """Returns `True` if the user had the correct password."""
+# Simple login check
+def login_page():
+    st.markdown("""
+    <style>
+    .login-container {
+        margin-top: -50px;
+    }
+    </style>
+    """, unsafe_allow_html=True)
     
-    def password_entered():
-        """Checks whether a password entered by the user is correct."""
-        # Hash the password to compare with stored hash
-        user_hash = hashlib.sha256(st.session_state["user_id"].encode()).hexdigest()
-        password_hash = hashlib.sha256(st.session_state["password"].encode()).hexdigest()
-        
-        # Check credentials (user: datacentre, password: spitivalley)
-        if (user_hash == "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3" and 
-            password_hash == "c6a66b4256a6b67d3463a7e0e6f3c2e5c63c3a5c3a3a3a3a3a3a3a3a3a3a3a3a"):
-            st.session_state["password_correct"] = True
-            st.session_state["user"] = st.session_state["user_id"]
-            del st.session_state["password"]  # Don't store password
-            del st.session_state["user_id"]
+    st.title("🔐 Login Page")
+    
+    user_id = st.text_input("User ID", placeholder="Enter your user ID")
+    password = st.text_input("Password", type="password", placeholder="Enter your password")
+    
+    if st.button("Login"):
+        if user_id == "datacentre" and password == "spitivalley":
+            st.session_state.logged_in = True
+            st.session_state.current_page = "birthday_card"
+            st.rerun()
         else:
-            st.session_state["password_correct"] = False
+            st.error("😕 User ID or password incorrect")
 
-    # First run, show inputs for username and password.
-    if "password_correct" not in st.session_state:
-        st.title("🔐 Login Page")
-        st.text_input("User ID", key="user_id", placeholder="Enter your user ID")
-        st.text_input("Password", type="password", key="password", placeholder="Enter your password")
-        st.button("Login", on_click=password_entered)
-        return False
+def birthday_card_page():
+    # Compact birthday card styling
+    st.markdown("""
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
     
-    # Password incorrect.
-    elif not st.session_state["password_correct"]:
-        st.title("🔐 Login Page")
-        st.text_input("User ID", key="user_id", placeholder="Enter your user ID")
-        st.text_input("Password", type="password", key="password", placeholder="Enter your password")
-        st.button("Login", on_click=password_entered)
-        st.error("😕 User ID or password incorrect")
-        return False
+    .main-container {
+        margin-top: -30px;
+        padding: 0;
+    }
     
-    # Password correct.
-    else:
-        return True
+    .birthday-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 15px;
+        border-radius: 20px;
+        text-align: center;
+        color: white;
+        margin: 5px 0;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        min-height: 220px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .birthday-title {
+        font-family: 'Dancing Script', cursive;
+        font-size: 2.5rem !important;
+        font-weight: 700;
+        margin-bottom: 3px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .birthday-name {
+        font-family: 'Poppins', sans-serif;
+        font-size: 2.2rem !important;
+        font-weight: 600;
+        color: #FFD700;
+        margin: 3px 0;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        animation: glow 2s ease-in-out infinite alternate;
+    }
+    
+    .birthday-message {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.95rem !important;
+        margin: 3px 0;
+        line-height: 1.3;
+        max-width: 450px;
+    }
+    
+    @keyframes glow {
+        from { 
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #e60073; 
+        }
+        to { 
+            text-shadow: 0 0 10px #fff, 0 0 15px #ff4da6, 0 0 20px #ff4da6; 
+        }
+    }
+    
+    .balloons {
+        font-size: 1.4rem;
+        margin: 2px 0;
+        letter-spacing: 3px;
+    }
+    
+    .next-btn {
+        background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
+        color: white;
+        border: none;
+        padding: 8px 20px;
+        font-size: 1rem;
+        border-radius: 50px;
+        margin-top: 10px;
+        box-shadow: 0 4px 10px rgba(255,107,107,0.3);
+        transition: all 0.3s ease;
+    }
+    
+    .next-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(255,107,107,0.5);
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
+    # Compact layout
+    st.markdown('<div class="main-container">', unsafe_allow_html=True)
+    
+    # Birthday Card - directly centered without excessive columns
+    st.markdown("""
+    <div class="birthday-card">
+        <div class="balloons">🎈🎉🎂</div>
+        <div class="birthday-title">Happy BirthdayDearest Aathi</div>
+        <div class="balloons">🎁✨🎊</div>
+        <div class="birthday-message">
+            Wishing you a day as wonderful and special as you are!<br>
+            May this year bring you joy and beautiful memories!
+        </div>
+        <div class="balloons">💫🌟❤️</div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Next button - compact placement
+    if st.button("🎬 For our supergirl →", key="next_btn", use_container_width=True):
+        st.session_state.current_page = "video"
+        st.rerun()
+    
+    st.markdown('</div>', unsafe_allow_html=True)
+
+def video_page():
+    st.markdown("""
+    <style>
+    .video-page {
+        text-align: center;
+        margin-top: -20px;
+    }
+    .video-title {
+        font-size: 1.8rem;
+        color: #FF6B6B;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+    .video-container {
+        margin: 10px auto;
+        max-width: 800px;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        background: #000;
+    }
+    .back-btn {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 8px 20px;
+        font-size: 0.9rem;
+        border-radius: 50px;
+        margin: 8px 5px;
+        box-shadow: 0 4px 10px rgba(102,126,234,0.3);
+    }
+    .button-row {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 15px;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
+    st.markdown('<div class="video-page">', unsafe_allow_html=True)
+    st.markdown('<div class="video-title">With Lots of Love</div>', unsafe_allow_html=True)
+    
+    # Video container - simplified without the extra black card
+    try:
+        st.video('video.mp4')
+    except FileNotFoundError:
+        st.error("❌ Video file 'video.mp4' not found.")
+    except Exception as e:
+        st.error(f"❌ Error loading video: {str(e)}")
+    
+    # Compact navigation buttons
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("← Back to Card", key="back_btn", use_container_width=True):
+            st.session_state.current_page = "birthday_card"
+            st.rerun()
+    with col2:
+        if st.button("🚪 Logout", key="logout_from_video", use_container_width=True):
+            st.session_state.logged_in = False
+            st.session_state.current_page = "birthday_card"
+            st.rerun()
+    
+    st.markdown('</div>', unsafe_allow_html=True)
 
 def main():
     st.set_page_config(
-        page_title="Secure Video Player",
-        page_icon="🔐",
-        layout="centered"
+        page_title="Happy Birthday Aathiiiii!",
+        page_icon="🎂",
+        layout="centered",
+        initial_sidebar_state="collapsed"
     )
     
-    if check_password():
-        # User is authenticated
-        st.success(f"Welcome {st.session_state['user']}! ✅")
-        st.title("🎬 Video Player")
-        st.write("You have successfully logged in. Enjoy the video!")
-        
-        # Play the video
-        try:
-            # For GitHub deployment, make sure video.mp4 is in the same directory
-            video_file = open('video.mp4', 'rb')
-            video_bytes = video_file.read()
-            
-            st.video(video_bytes)
-            st.write("Video is playing...")
-            
-        except FileNotFoundError:
-            st.error("❌ Video file 'video.mp4' not found. Please make sure the video file is in the same directory as this script.")
-        except Exception as e:
-            st.error(f"❌ An error occurred while loading the video: {str(e)}")
-        
-        # Logout button
-        if st.button("Logout"):
-            for key in st.session_state.keys():
-                del st.session_state[key]
-            st.rerun()
+    # Hide Streamlit default elements and reduce margins
+    hide_streamlit_style = """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    .stApp {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        margin-top: -50px;
+        padding-top: 0px;
+    }
+    .block-container {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+    .stButton button {
+        width: 100%;
+    }
+    </style>
+    """
+    st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+    
+    # Initialize session state
+    if 'logged_in' not in st.session_state:
+        st.session_state.logged_in = False
+        st.session_state.current_page = "birthday_card"
+    
+    if st.session_state.logged_in:
+        if st.session_state.current_page == "birthday_card":
+            birthday_card_page()
+        elif st.session_state.current_page == "video":
+            video_page()
+    else:
+        login_page()
 
 if __name__ == "__main__":
     main()
