@@ -254,7 +254,7 @@ def ask_for_clue_page():
     # Secret word input
     secret_word = st.text_input(
         "got ??:", 
-        placeholder="type here, all small",
+        placeholder="type here, 7 small",
         key="secret_word_input"
     )
     
