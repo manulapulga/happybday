@@ -94,7 +94,7 @@ def birthday_card_page():
         background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
         color: white;
         border: none;
-        padding: 8px 20px;
+        padding: 20px 20px;
         font-size: 1rem;
         border-radius: 50px;
         margin-top: 10px;
