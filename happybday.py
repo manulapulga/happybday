@@ -126,146 +126,12 @@ def birthday_card_page():
     </div>
     """, unsafe_allow_html=True)
     
-    # Single Next button - compact placement
-    if st.button("Next Clue 🔍", key="next_clue_btn", use_container_width=True):
-        st.session_state.current_page = "clue_page"
+    # Next button - compact placement
+    if st.button("🎬 For our supergirl →", key="next_btn", use_container_width=True):
+        st.session_state.current_page = "video"
         st.rerun()
     
     st.markdown('</div>', unsafe_allow_html=True)
-
-def clue_page():
-    st.markdown("""
-    <style>
-    .clue-container {
-        text-align: center;
-        padding: 30px;
-        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        border-radius: 20px;
-        margin: 20px 0;
-    }
-    .clue-text {
-        font-size: 1.5rem;
-        color: #333;
-        margin-bottom: 30px;
-        font-weight: 600;
-    }
-    .password-input {
-        margin: 20px auto;
-        max-width: 400px;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-    
-    st.markdown('<div class="clue-container">', unsafe_allow_html=True)
-    st.markdown('<div class="clue-text">🔍 Can you find the next clue? Enter the password:</div>', unsafe_allow_html=True)
-    
-    clue_password = st.text_input("Enter the keyword:", placeholder="Type the password here...", key="clue_password")
-    
-    if st.button("Enter 🔑", key="clue_enter_btn", use_container_width=True):
-        if clue_password.lower() == "jithesh":
-            st.session_state.current_page = "youtube_clue_page"
-            st.rerun()
-        else:
-            st.error("Incorrect password! Try again.")
-    
-    st.markdown('</div>', unsafe_allow_html=True)
-
-def youtube_clue_page():
-    st.markdown("""
-    <style>
-    .youtube-container {
-        text-align: center;
-        padding: 30px;
-        background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
-        border-radius: 20px;
-        margin: 20px 0;
-        color: white;
-    }
-    .youtube-text {
-        font-size: 1.4rem;
-        margin-bottom: 25px;
-        font-weight: 600;
-    }
-    .youtube-placeholder {
-        font-size: 2rem;
-        margin: 15px 0;
-    }
-    .password-input {
-        margin: 20px auto;
-        max-width: 500px;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-    
-    st.markdown('<div class="youtube-container">', unsafe_allow_html=True)
-    st.markdown('<div class="youtube-text">🎶 You wanted to hear from "?" 🎵</div>', unsafe_allow_html=True)
-    st.markdown('<div class="youtube-placeholder">🎵 🎤 🎧</div>', unsafe_allow_html=True)
-    
-    youtube_link = st.text_input(
-        "Paste the YouTube link:", 
-        placeholder="https://www.youtube.com/...", 
-        key="youtube_link_input"
-    )
-    
-    if st.button("I Wanna Hear 🎶", key="youtube_btn", use_container_width=True):
-        if youtube_link == "https://www.youtube.com/watch?v=vWU3UTxkU9k&list=RDvWU3UTxkU9k&start_radio=1":
-            st.session_state.current_page = "final_meet_page"
-            st.rerun()
-        else:
-            st.error("Not the right link! Keep searching...")
-    
-    st.markdown('</div>', unsafe_allow_html=True)
-
-def final_meet_page():
-    st.markdown("""
-    <style>
-    .final-container {
-        text-align: center;
-        padding: 50px 30px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        border-radius: 20px;
-        margin: 20px 0;
-        color: white;
-    }
-    .final-text {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 20px;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    }
-    .meet-location {
-        font-size: 3rem;
-        font-weight: 800;
-        color: #FFD700;
-        margin: 30px 0;
-        text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-        animation: pulse 2s ease-in-out infinite;
-    }
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-        100% { transform: scale(1); }
-    }
-    .celebration {
-        font-size: 2rem;
-        margin: 20px 0;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-    
-    st.markdown('<div class="final-container">', unsafe_allow_html=True)
-    st.markdown('<div class="final-text">🎉 Final Destination! 🎉</div>')
-    st.markdown('<div class="celebration">🎂 🎁 🎈 ✨</div>')
-    st.markdown('<div class="meet-location">Meet at 211</div>')
-    st.markdown('<div class="celebration">🎊 🥳 🎇 🎆</div>')
-    st.markdown('<div style="margin-top: 30px; font-size: 1.2rem;">See you there! Don\'t be late! 😊</div>')
-    st.markdown('</div>', unsafe_allow_html=True)
-    
-    # Option to go back to beginning
-    if st.button("Start Over 🔄", use_container_width=True):
-        st.session_state.logged_in = False
-        st.session_state.current_page = "birthday_card"
-        st.rerun()
 
 def video_page():
     st.markdown("""
@@ -308,7 +174,7 @@ def video_page():
     """, unsafe_allow_html=True)
     
     st.markdown('<div class="video-page">', unsafe_allow_html=True)
-    st.markdown('<div class="video-title">With Lots of Love, FoodeezZ d' GWD 😋😉</div>', unsafe_allow_html=True)
+    st.markdown('<div class="video-title">With Lots of Love, FoodeezZ d’ GWD 😋😉</div>', unsafe_allow_html=True)
     
     # Video container - simplified without the extra black card
     try:
@@ -318,11 +184,17 @@ def video_page():
     except Exception as e:
         st.error(f"❌ Error loading video: {str(e)}")
     
-    # Navigation buttons
-    if st.button("🚪 Logout", key="logout_from_video", use_container_width=True):
-        st.session_state.logged_in = False
-        st.session_state.current_page = "birthday_card"
-        st.rerun()
+    # Compact navigation buttons
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("← Back to Card", key="back_btn", use_container_width=True):
+            st.session_state.current_page = "birthday_card"
+            st.rerun()
+    with col2:
+        if st.button("🚪 Logout", key="logout_from_video", use_container_width=True):
+            st.session_state.logged_in = False
+            st.session_state.current_page = "birthday_card"
+            st.rerun()
     
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -364,12 +236,6 @@ def main():
     if st.session_state.logged_in:
         if st.session_state.current_page == "birthday_card":
             birthday_card_page()
-        elif st.session_state.current_page == "clue_page":
-            clue_page()
-        elif st.session_state.current_page == "youtube_clue_page":
-            youtube_clue_page()
-        elif st.session_state.current_page == "final_meet_page":
-            final_meet_page()
         elif st.session_state.current_page == "video":
             video_page()
     else:
