@@ -36,11 +36,11 @@ def birthday_card_page():
     
     .birthday-card {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 15px;
+        padding: 30px;
         border-radius: 20px;
         text-align: center;
         color: white;
-        margin: 5px 0;
+        margin: 30px 0;
         box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         min-height: 220px;
         display: flex;
