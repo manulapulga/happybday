@@ -546,8 +546,9 @@ def final_secret_page():
         st.session_state.show_helper_hint = False
     
     # Secret word input
+    st.subheader("vroom")
     secret_word = st.text_input(
-        "vroom", 
+        "Secret Word:", 
         placeholder="11",
         key="final_secret_input",
         label_visibility="collapsed"
