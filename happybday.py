@@ -601,7 +601,7 @@ def final_secret_page():
             st.markdown(f"""
                 <div class="meet-text-reveal">
                     MEET <img src="{img_data}" alt="moment" 
-                    style="height: 60px; vertical-align: middle; margin-left: 10px;">
+                    style="height: 100px; vertical-align: middle; margin-left: 10px;">
                 </div>
             """, unsafe_allow_html=True)
         else:
