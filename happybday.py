@@ -253,7 +253,7 @@ def ask_for_clue_page():
     
     # Secret word input
     secret_word = st.text_input(
-        "got ??:", 
+        "got ? ?:", 
         placeholder="type here, 7 small",
         key="secret_word_input"
     )
@@ -536,6 +536,7 @@ def final_secret_page():
     st.markdown('<div class="final-secret-page">', unsafe_allow_html=True)
     st.markdown('<div class="meet-text">കഴിഞ്ഞു ലാസ്റ്റ് </div>', unsafe_allow_html=True)
     
+    
     # Check if secret word is correct and show the reveal
     if 'secret_revealed' not in st.session_state:
         st.session_state.secret_revealed = False
@@ -546,7 +547,7 @@ def final_secret_page():
     
     # Secret word input
     secret_word = st.text_input(
-        "Secret Word:", 
+        "vroom", 
         placeholder="11",
         key="final_secret_input",
         label_visibility="collapsed"
