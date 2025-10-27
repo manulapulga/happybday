@@ -1,5 +1,4 @@
 import streamlit as st
-import base64
 
 # Simple login check
 def login_page():
@@ -590,12 +589,7 @@ def final_secret_page():
     
     # Display the reveal if secret is correct
     if st.session_state.secret_revealed:
-        st.markdown("""
-            <div class="meet-text-reveal">
-                MEET <img src="1.png" alt="moment" style="height: 60px; vertical-align: middle; margin-left: 10px;">
-            </div>
-        """, unsafe_allow_html=True)
-    
+        st.markdown('<div class="meet-text-reveal">MEET ?  ????</div>', unsafe_allow_html=True)
         st.markdown('<div class="what-to-do-text">and collect ur 1st moment</div>', unsafe_allow_html=True)
         
         # Success celebration
