@@ -13,7 +13,7 @@ def login_page():
     
     st.title("Curious? 📞")
     
-    user_id = st.text_input("who", placeholder="Enter your user ID (all small 7 chars)")
+    user_id = st.text_input("mam", placeholder="Enter your user ID (all small 7 chars)")
     password = st.text_input("room", type="password", placeholder="Enter your password (all small 10 chars)")
     
     if st.button("i got it"):
