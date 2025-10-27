@@ -14,7 +14,7 @@ def login_page():
     st.title("Curious? 📞")
     
     user_id = st.text_input("dr", placeholder="Enter your user ID (all small 7 chars)")
-    password = st.text_input("room", type="password", placeholder="Enter your password (all small 10 chars)")
+    password = st.text_input("crossroads", type="password", placeholder="Enter your password (all small 10 chars)")
     
     if st.button("i got it"):
         if user_id == "anseena" and password == "datacentre":
