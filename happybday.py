@@ -12,11 +12,11 @@ def login_page():
     
     st.title("Curious? 📞")
     
-    user_id = st.text_input("room", placeholder="Enter your user ID (all small 10 chars)")
-    password = st.text_input("vroom", type="password", placeholder="Enter your password (all small 11 chars)")
+    user_id = st.text_input("who", placeholder="Enter your user ID (all small 7 chars)")
+    password = st.text_input("room", type="password", placeholder="Enter your password (all small 10 chars)")
     
     if st.button("i got it"):
-        if user_id == "datacentre" and password == "spitivalley":
+        if user_id == "anseena" and password == "datacentre":
             st.session_state.logged_in = True
             st.session_state.current_page = "birthday_card"
             st.rerun()
@@ -547,7 +547,7 @@ def final_secret_page():
     # Secret word input
     secret_word = st.text_input(
         "Secret Word:", 
-        placeholder="7",
+        placeholder="11",
         key="final_secret_input",
         label_visibility="collapsed"
     )
@@ -563,7 +563,7 @@ def final_secret_page():
     
     with col2:
         if st.button("🎯 What to do?", key="what_to_do_btn", use_container_width=True):
-            if secret_word.lower() == "anseena":
+            if secret_word.lower() == "spitivalley":
                 st.session_state.secret_revealed = True
                 st.rerun()
             else:
@@ -587,8 +587,8 @@ def final_secret_page():
     
     # Display the reveal if secret is correct
     if st.session_state.secret_revealed:
-        st.markdown('<div class="meet-text-reveal">MEET HER</div>', unsafe_allow_html=True)
-        st.markdown('<div class="what-to-do-text">and collect ur moment</div>', unsafe_allow_html=True)
+        st.markdown('<div class="meet-text-reveal">MEET <b>?</b>????</div>', unsafe_allow_html=True)
+        st.markdown('<div class="what-to-do-text">and collect ur 1st moment</div>', unsafe_allow_html=True)
         
         # Success celebration
         st.balloons()
