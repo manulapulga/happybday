@@ -336,7 +336,7 @@ def youtube_clue_page():
             st.rerun()
     with col2:
         if st.button("i wanna hear", key="play_youtube", use_container_width=True):
-            if youtube_link == "https://www.youtube.com/watch?v=vWU3UTxkU9k&list=RDvWU3UTxkU9k&start_radio=1":
+            if youtube_link == "https://youtu.be/vWU3UTxkU9k?si=roEjNPKyLYosdKRp":
                 st.session_state.current_page = "final_meeting"
                 st.rerun()
             else:
