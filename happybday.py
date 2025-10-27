@@ -1,4 +1,5 @@
 import streamlit as st
+import base64
 
 # Simple login check
 def login_page():
