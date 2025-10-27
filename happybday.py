@@ -1,4 +1,5 @@
 import streamlit as st
+import base64
 
 # Simple login check
 def login_page():
@@ -311,11 +312,11 @@ def youtube_clue_page():
     st.markdown('<div class="youtube-page">', unsafe_allow_html=True)
     st.markdown('<div class="placeholder-text">🎶u wanted to hear from "?"🎵</div>', unsafe_allow_html=True)
     
-    # Display the 1.png image in a smaller size
+    # Display the 2.png image in a smaller size
     try:
-        st.image('1.png', width=300)  # Adjust width as needed to match text size
+        st.image('2.png', width=300)  # Adjust width as needed to match text size
     except FileNotFoundError:
-        st.error("❌ Image file '1.png' not found.")
+        st.error("❌ Image file '2.png' not found.")
     except Exception as e:
         st.error(f"❌ Error loading image: {str(e)}")
     
@@ -589,14 +590,28 @@ def final_secret_page():
     
     # Display the reveal if secret is correct
     if st.session_state.secret_revealed:
-        st.markdown('<div class="meet-text-reveal">MEET ?  ????</div>', unsafe_allow_html=True)
+        # Encode image 2.png to base64 so it displays inline
+        try:
+            with open("2.png", "rb") as f:
+                img_data = f"data:image/png;base64,{base64.b64encode(f.read()).decode()}"
+        except Exception:
+            img_data = None
+    
+        if img_data:
+            st.markdown(f"""
+                <div class="meet-text-reveal">
+                    MEET <img src="{img_data}" alt="moment" 
+                    style="height: 60px; vertical-align: middle; margin-left: 10px;">
+                </div>
+            """, unsafe_allow_html=True)
+        else:
+            st.markdown('<div class="meet-text-reveal">MEET moment</div>', unsafe_allow_html=True)
+    
         st.markdown('<div class="what-to-do-text">and collect ur 1st moment</div>', unsafe_allow_html=True)
         
-        # Success celebration
+        # Celebration
         st.balloons()
         st.success("It’s a canvas where we can portray our friendship.")
-    
-    st.markdown('</div>', unsafe_allow_html=True)
 
 def main():
     st.set_page_config(
