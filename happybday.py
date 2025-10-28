@@ -77,7 +77,6 @@ def birthday_card_page():
     }
     
     .secret-hint {
-        color: #FFD700;
         font-weight: bold;
         cursor: pointer;
         text-shadow: 0 0 5px rgba(255,215,0,0.3);
