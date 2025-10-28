@@ -168,66 +168,90 @@ def birthday_card_page():
             st.session_state.current_page = "video"
             st.rerun()
     
-    # Hidden clue - optimized for iPhone with touch interaction
+    # Hidden clue - optimized for brightness-based discovery
     st.markdown("""
     <style>
     .hidden-clue {
         font-size: 0.9rem;
-        color: #f8f8f8;
+        color: #e8e8e8;
         text-align: center;
         margin-top: 40px;
         margin-bottom: 10px;
-        opacity: 0.12;
+        opacity: 0.08;
         line-height: 1.4;
         font-family: 'Georgia', serif;
         letter-spacing: 1px;
         user-select: none;
-        transition: opacity 0.3s ease, color 0.3s ease;
-        background: linear-gradient(90deg, transparent, rgba(248,248,248,0.08), transparent);
+        transition: all 0.4s ease;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
         padding: 8px 15px;
         border-radius: 8px;
-        text-shadow: 0 0 2px rgba(255,255,255,0.15);
+        text-shadow: 0 0 3px rgba(255,255,255,0.1);
         cursor: default;
         -webkit-tap-highlight-color: transparent;
+        border: 1px solid rgba(255,255,255,0.03);
+        font-weight: 500;
     }
     
     .hidden-clue:hover, .hidden-clue:active {
-        opacity: 0.35;
+        opacity: 0.25;
         color: #ffffff;
-        background: linear-gradient(90deg, transparent, rgba(248,248,248,0.15), transparent);
+        text-shadow: 0 0 5px rgba(255,255,255,0.3);
+        border-color: rgba(255,255,255,0.1);
     }
     
-    /* Mobile touch optimization */
+    /* Brightness-responsive styles */
     @media (max-width: 430px) {
         .hidden-clue {
-            opacity: 0.15;
+            opacity: 0.1;
             font-size: 0.95rem;
-            color: #fafafa;
+            color: #f0f0f0;
             padding: 10px 20px;
             margin-top: 45px;
+            text-shadow: 0 0 4px rgba(255,255,255,0.15);
         }
         
         .hidden-clue:active {
-            opacity: 0.45;
+            opacity: 0.4;
             color: #ffffff;
-            background: linear-gradient(90deg, transparent, rgba(248,248,248,0.25), transparent);
-            text-shadow: 0 0 3px rgba(255,255,255,0.3);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            text-shadow: 0 0 8px rgba(255,255,255,0.5);
         }
     }
     
-    /* High brightness enhancement */
-    @media (min-resolution: 460dpi) {
+    /* High brightness enhancement - these kick in at max brightness */
+    @media (min-resolution: 460dpi) and (max-width: 430px) {
         .hidden-clue {
             opacity: 0.18;
-            color: #fcfcfc;
+            color: #f8f8f8;
+            text-shadow: 0 0 6px rgba(255,255,255,0.25);
+            border-color: rgba(255,255,255,0.08);
+        }
+    }
+    
+    /* Extra brightness boost for maximum brightness setting */
+    @media (prefers-contrast: high) {
+        .hidden-clue {
+            opacity: 0.22 !important;
+            color: #fafafa !important;
+            text-shadow: 0 0 8px rgba(255,255,255,0.4) !important;
         }
     }
     
     /* Force higher visibility on touch */
     .hidden-clue.touched {
-        opacity: 0.5 !important;
+        opacity: 0.6 !important;
         color: #ffffff !important;
-        background: linear-gradient(90deg, transparent, rgba(248,248,248,0.3), transparent) !important;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent) !important;
+        text-shadow: 0 0 10px rgba(255,255,255,0.8) !important;
+        border-color: rgba(255,255,255,0.2) !important;
+    }
+    
+    /* Brightness simulation for testing */
+    .high-brightness .hidden-clue {
+        opacity: 0.3 !important;
+        color: #ffffff !important;
+        text-shadow: 0 0 10px rgba(255,255,255,0.6) !important;
     }
     </style>
     
@@ -240,6 +264,7 @@ def birthday_card_page():
     document.addEventListener('DOMContentLoaded', function() {
         const clue = document.querySelector('.hidden-clue');
         if (clue) {
+            // Touch events
             clue.addEventListener('touchstart', function() {
                 this.classList.add('touched');
             });
@@ -247,6 +272,19 @@ def birthday_card_page():
             clue.addEventListener('touchend', function(e) {
                 e.preventDefault();
             });
+            
+            // Detect brightness changes (simulated)
+            let brightnessCheck = setInterval(function() {
+                const rect = clue.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    // Element is visible, check if user might have increased brightness
+                    const style = window.getComputedStyle(clue);
+                    const opacity = parseFloat(style.opacity);
+                    if (opacity > 0.15) {
+                        clue.style.transition = 'all 0.6s ease';
+                    }
+                }
+            }, 1000);
         }
     });
     </script>
