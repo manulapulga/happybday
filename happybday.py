@@ -13,16 +13,16 @@ def login_page():
     
     st.title("Curious? 📞")
     
-    user_id = st.text_input("dr", placeholder="Enter your user ID (all small 7 chars)")
+    user_id = st.text_input("dr", placeholder="Enter your user ID (7 chars)")
     password = st.text_input("crossroads", type="password", placeholder="Enter your password (all small 10 chars)")
     
     if st.button("i got it"):
-        if user_id == "anseena" and password == "datacentre":
+        if user_id == "Anseena" and password == "datacentre":
             st.session_state.logged_in = True
             st.session_state.current_page = "birthday_card"
             st.rerun()
         else:
-            st.error("അയ്യേ  പൂയ് പൂയ് . ")
+            st.error("ഒത്തില്ല ")
 
 def birthday_card_page():
     # Compact birthday card styling
