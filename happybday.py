@@ -126,30 +126,17 @@ def birthday_card_page():
     
     # Birthday Card - directly centered without excessive columns
     st.markdown("""
-        <div class="birthday-card">
-            <div class="balloons">🎈🎉🎂</div>
-            <div class="birthday-title">Happy Birthday Dearest Aathi</div>
-            <div class="balloons">🎁✨🎊</div>
-            <div class="birthday-message">
-                Wishing you a day as wonderful and special as you are!<br>
-                May this year bring you joy and beautiful memories!
-            </div>
-            <div class="balloons">💫🌟❤️</div>
-    
-            <!-- Subtle hidden clue -->
-            <div style="
-                font-size: 0.65rem;
-                color: rgba(255, 255, 255, 0.25);
-                margin-top: 8px;
-                font-style: italic;
-                text-align: center;
-                user-select: none;
-            ">
-                4. Since u r not likely to use it, it will be with rosh mostly. Seems he has already one, but not owned by him.
-            </div>
+    <div class="birthday-card">
+        <div class="balloons">🎈🎉🎂</div>
+        <div class="birthday-title">Happy BirthdayDearest Aathi</div>
+        <div class="balloons">🎁✨🎊</div>
+        <div class="birthday-message">
+            Wishing you a day as wonderful and special as you are!<br>
+            May this year bring you joy and beautiful memories!
         </div>
+        <div class="balloons">💫🌟❤️</div>
+    </div>
     """, unsafe_allow_html=True)
-
     
     # Buttons
     col1, col2 = st.columns(2)
@@ -163,7 +150,6 @@ def birthday_card_page():
             st.rerun()
     
     st.markdown('</div>', unsafe_allow_html=True)
-    st.markdown('<div class="video-title">With Lots of Love, FoodeezZ d GWD 😋😉</div>', unsafe_allow_html=True)
 
 def video_page():
     st.markdown("""
