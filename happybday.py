@@ -194,7 +194,7 @@ def birthday_card_page():
     }
     
     .hidden-clue:hover, .hidden-clue:active {
-        opacity: 0.25;
+        opacity: 0.5;
         color: #ffffff;
         text-shadow: 0 0 5px rgba(255,255,255,0.3);
         border-color: rgba(255,255,255,0.1);
