@@ -14,10 +14,9 @@ def login_page():
     st.title("Curious? 📞")
     
     user_id = st.text_input("dr", placeholder="Enter your user ID (7 chars)")
-    password = st.text_input("crossroads", type="password", placeholder="Enter your password (all small 10 chars)")
     
     if st.button("i got it"):
-        if user_id == "Anseena" and password == "datacentre":
+        if user_id == "Anseena":
             st.session_state.logged_in = True
             st.session_state.current_page = "birthday_card"
             st.rerun()
@@ -169,6 +168,48 @@ def birthday_card_page():
     .hidden-clue:hover {
         opacity: 0.6;
     }
+    
+    /* Password modal styling */
+    .password-modal {
+        background: rgba(0,0,0,0.8);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+    
+    .password-container {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        max-width: 400px;
+        width: 90%;
+    }
+    
+    .password-title {
+        font-size: 1.5rem;
+        color: #FF6B6B;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+    
+    .close-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #666;
+    }
     </style>
     """, unsafe_allow_html=True)
     
@@ -199,8 +240,35 @@ def birthday_card_page():
             st.rerun()
     with col2:
         if st.button(" 🗝️For our supergirl💰 →", key="next_btn", use_container_width=True):
-            st.session_state.current_page = "video"
+            st.session_state.show_password_modal = True
             st.rerun()
+    
+    # Password modal
+    if st.session_state.get('show_password_modal', False):
+        st.markdown("""
+        <div class="password-modal">
+            <div class="password-container">
+                <div class="password-title">Enter Supergirl Password</div>
+                """, unsafe_allow_html=True)
+        
+        # Password input inside the modal
+        password = st.text_input("Password:", type="password", placeholder="Enter password (all small 10 chars)", key="supergirl_password")
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("Cancel", key="cancel_password", use_container_width=True):
+                st.session_state.show_password_modal = False
+                st.rerun()
+        with col2:
+            if st.button("Verify", key="verify_password", use_container_width=True):
+                if password == "datacentre":
+                    st.session_state.current_page = "video"
+                    st.session_state.show_password_modal = False
+                    st.rerun()
+                else:
+                    st.error("Incorrect password!")
+        
+        st.markdown("</div></div>", unsafe_allow_html=True)
     
     # Hidden clue - optimized for brightness-based discovery
     st.markdown("""
@@ -325,6 +393,7 @@ def birthday_card_page():
     """, unsafe_allow_html=True)
     
     st.markdown('</div>', unsafe_allow_html=True)
+
 def video_page():
     st.markdown("""
     <style>
@@ -785,7 +854,7 @@ def final_secret_page():
         
         # Celebration
         st.balloons()
-        st.success("It’s a canvas where we can portray our friendship.")
+        st.success("It's a canvas where we can portray our friendship.")
 
 def main():
     st.set_page_config(
@@ -821,6 +890,7 @@ def main():
     if 'logged_in' not in st.session_state:
         st.session_state.logged_in = False
         st.session_state.current_page = "birthday_card"
+        st.session_state.show_password_modal = False
     
     if st.session_state.logged_in:
         if st.session_state.current_page == "birthday_card":
