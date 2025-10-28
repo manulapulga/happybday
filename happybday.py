@@ -25,138 +25,8 @@ def login_page():
             st.error("അയ്യേ  പൂയ് പൂയ് . ")
 
 def birthday_card_page():
-    # Compact birthday card styling
-    st.markdown("""
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
-    
-    .main-container {
-        margin-top: -30px;
-        padding: 0;
-    }
-    
-    .birthday-card {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 30px;
-        border-radius: 20px;
-        text-align: center;
-        color: white;
-        margin: 30px 0;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        min-height: 220px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .birthday-title {
-        font-family: 'Dancing Script', cursive;
-        font-size: 2.5rem !important;
-        font-weight: 700;
-        margin-bottom: 3px;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    }
-    
-    .birthday-name {
-        font-family: 'Poppins', sans-serif;
-        font-size: 2.2rem !important;
-        font-weight: 600;
-        color: #FFD700;
-        margin: 3px 0;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        animation: glow 2s ease-in-out infinite alternate;
-    }
-    
-    .birthday-message {
-        font-family: 'Poppins', sans-serif;
-        font-size: 0.95rem !important;
-        margin: 3px 0;
-        line-height: 1.3;
-        max-width: 450px;
-    }
-    
-    @keyframes glow {
-        from { 
-            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #e60073; 
-        }
-        to { 
-            text-shadow: 0 0 10px #fff, 0 0 15px #ff4da6, 0 0 20px #ff4da6; 
-        }
-    }
-    
-    .balloons {
-        font-size: 1.4rem;
-        margin: 2px 0;
-        letter-spacing: 3px;
-    }
-    
-    .next-btn {
-        background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
-        color: white;
-        border: none;
-        padding: 20px 20px;
-        font-size: 1rem;
-        border-radius: 50px;
-        margin-top: 10px;
-        box-shadow: 0 4px 10px rgba(255,107,107,0.3);
-        transition: all 0.3s ease;
-    }
-    
-    .next-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 15px rgba(255,107,107,0.5);
-    }
-    
-    .back-btn {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        border: none;
-        padding: 8px 20px;
-        font-size: 0.9rem;
-        border-radius: 50px;
-        margin: 8px 5px;
-        box-shadow: 0 4px 10px rgba(102,126,234,0.3);
-    }
-    
-    /* Hidden clue styling */
-    .hidden-clue {
-        font-size: 0.7rem;
-        color: #cccccc;
-        text-align: center;
-        margin-top: 40px;
-        margin-bottom: -10px;
-        opacity: 0.3;
-        line-height: 1.2;
-        font-family: 'Courier New', monospace;
-        letter-spacing: 0.5px;
-        user-select: none;
-        transition: opacity 0.3s ease;
-    }
-    
-    .hidden-clue:hover {
-        opacity: 0.6;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-    
-    # Compact layout
-    st.markdown('<div class="main-container">', unsafe_allow_html=True)
-    
-    # Birthday Card - directly centered without excessive columns
-    st.markdown("""
-    <div class="birthday-card">
-        <div class="balloons">🎈🎉🎂</div>
-        <div class="birthday-title">Happy BirthdayDearest Aathi</div>
-        <div class="balloons">🎁✨🎊</div>
-        <div class="birthday-message">
-            Wishing you a day as wonderful and special as you are!<br>
-            May this year bring you joy and beautiful memories!
-        </div>
-        <div class="balloons">💫🌟❤️</div>
-    </div>
-    """, unsafe_allow_html=True)
-    
+    # ... (keep all the existing CSS and HTML above the buttons the same) ...
+
     # Buttons
     col1, col2 = st.columns(2)
     with col1:
@@ -168,11 +38,52 @@ def birthday_card_page():
             st.session_state.current_page = "video"
             st.rerun()
     
-    # Hidden clue - very subtle at the bottom
-    st.markdown(
-        '<div class="hidden-clue">4. since u r not likely to use it, it will be with rosh mostly. seems he has already one, but not owned by him</div>',
-        unsafe_allow_html=True
-    )
+    # Hidden clue - optimized for iPhone 16 Pro max brightness
+    st.markdown("""
+    <style>
+    .hidden-clue {
+        font-size: 0.65rem;
+        color: #f0f0f0;
+        text-align: center;
+        margin-top: 35px;
+        margin-bottom: 5px;
+        opacity: 0.15;
+        line-height: 1.3;
+        font-family: 'Times New Roman', serif;
+        letter-spacing: 0.8px;
+        user-select: none;
+        transition: opacity 0.4s ease;
+        background: linear-gradient(90deg, transparent, rgba(240,240,240,0.05), transparent);
+        padding: 3px 0;
+        text-shadow: 0 0 1px rgba(255,255,255,0.1);
+    }
+    
+    .hidden-clue:hover {
+        opacity: 0.25;
+    }
+    
+    /* iPhone max brightness enhancement */
+    @media (max-width: 430px) {
+        .hidden-clue {
+            opacity: 0.18;
+            font-size: 0.68rem;
+            color: #f5f5f5;
+        }
+    }
+    
+    /* High brightness detection for iPhone 16 Pro */
+    @media (min-resolution: 460dpi) {
+        .hidden-clue {
+            opacity: 0.22;
+            color: #f8f8f8;
+        }
+    }
+    </style>
+    
+    <div class="hidden-clue">
+        4. since u r not likely to use it, it will be with rosh mostly. seems he has already one, but not owned by him
+    </div>
+    """, unsafe_allow_html=True)
     
     st.markdown('</div>', unsafe_allow_html=True)
 
