@@ -259,7 +259,7 @@ def birthday_card_page():
     /* Brightness-responsive styles */
     @media (max-width: 430px) {
         .hidden-clue {
-            opacity: 0.01;
+            opacity: 0.1;
             font-size: 0.95rem;
             color: #f0f0f0;
             padding: 10px 20px;
@@ -312,7 +312,7 @@ def birthday_card_page():
     </style>
     
     <div class="hidden-clue" onclick="this.classList.add('touched')">
-        ▶️ 0:58/1:16 where?
+        ▶ 0:58/1:16 where?
     </div>
     
     <script>
