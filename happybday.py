@@ -76,6 +76,38 @@ def birthday_card_page():
         max-width: 450px;
     }
     
+    .secret-hint {
+        color: #FFD700;
+        font-weight: bold;
+        cursor: pointer;
+        text-shadow: 0 0 5px rgba(255,215,0,0.3);
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-block;
+    }
+    
+    .secret-hint:hover {
+        color: #FF6B6B;
+        text-shadow: 0 0 10px rgba(255,107,107,0.6);
+        transform: translateY(-2px);
+    }
+    
+    .secret-hint::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #FFD700, transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .secret-hint:hover::after {
+        opacity: 1;
+    }
+    
     @keyframes glow {
         from { 
             text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #e60073; 
@@ -151,7 +183,9 @@ def birthday_card_page():
         <div class="balloons">🎁✨🎊</div>
         <div class="birthday-message">
             Wishing you a day as wonderful and special as you are!<br>
-            May your birthday be as special as the secret hidden down here, waiting for your gentle touch!
+            May your birthday be as special as the 
+            <span class="secret-hint">secret hidden down here</span>, 
+            waiting for your gentle touch!
         </div>
         <div class="balloons">💫🌟❤️</div>
     </div>
@@ -291,7 +325,6 @@ def birthday_card_page():
     """, unsafe_allow_html=True)
     
     st.markdown('</div>', unsafe_allow_html=True)
-
 def video_page():
     st.markdown("""
     <style>
