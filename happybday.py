@@ -192,11 +192,11 @@ def birthday_card_page():
     if st.session_state.get('show_password_section', False):
         st.markdown("""
         <div class="password-section">
-            <div class="password-title">Enter Supergirl Password to Continue</div>
+            <div class="password-title">sing the last song and send</div>
         </div>
         """, unsafe_allow_html=True)
         
-        password = st.text_input("Password:", type="password", placeholder="Enter password (all small 10 chars)", key="supergirl_password")
+        password = st.text_input("crossroads:", type="password", placeholder="Enter password (all small 10 chars)", key="supergirl_password")
         
         col1, col2 = st.columns(2)
         with col1:
@@ -363,7 +363,7 @@ def video_page():
     }
     .video-container {
         margin: 10px auto;
-        max-width: 800px;
+        max-width: 500px;
         border-radius: 15px;
         overflow: hidden;
         box-shadow: 0 8px 20px rgba(0,0,0,0.15);
