@@ -150,65 +150,21 @@ def birthday_card_page():
         box-shadow: 0 4px 10px rgba(102,126,234,0.3);
     }
     
-    /* Hidden clue styling */
-    .hidden-clue {
-        font-size: 0.7rem;
-        color: #cccccc;
-        text-align: center;
-        margin-top: 40px;
-        margin-bottom: -10px;
-        opacity: 0.3;
-        line-height: 1.2;
-        font-family: 'Courier New', monospace;
-        letter-spacing: 0.5px;
-        user-select: none;
-        transition: opacity 0.3s ease;
-    }
-    
-    .hidden-clue:hover {
-        opacity: 0.6;
-    }
-    
-    /* Password modal styling */
-    .password-modal {
-        background: rgba(0,0,0,0.8);
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-    }
-    
-    .password-container {
-        background: white;
-        padding: 30px;
+    .password-section {
+        background: rgba(255,255,255,0.1);
+        padding: 20px;
         border-radius: 15px;
-        text-align: center;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        max-width: 400px;
-        width: 90%;
+        margin: 20px 0;
+        border: 2px solid rgba(255,255,255,0.2);
+        backdrop-filter: blur(10px);
     }
     
     .password-title {
-        font-size: 1.5rem;
-        color: #FF6B6B;
-        margin-bottom: 20px;
+        color: #FFD700;
+        font-size: 1.2rem;
         font-weight: bold;
-    }
-    
-    .close-btn {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        cursor: pointer;
-        color: #666;
+        margin-bottom: 15px;
+        text-align: center;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -232,43 +188,41 @@ def birthday_card_page():
     </div>
     """, unsafe_allow_html=True)
     
-    # Buttons
-    col1, col2 = st.columns(2)
-    with col1:
-        if st.button("← Back to Login", key="back_to_login", use_container_width=True):
-            st.session_state.logged_in = False
-            st.rerun()
-    with col2:
-        if st.button(" 🗝️For our supergirl💰 →", key="next_btn", use_container_width=True):
-            st.session_state.show_password_modal = True
-            st.rerun()
-    
-    # Password modal
-    if st.session_state.get('show_password_modal', False):
+    # Password section - appears when user wants to proceed to video
+    if st.session_state.get('show_password_section', False):
         st.markdown("""
-        <div class="password-modal">
-            <div class="password-container">
-                <div class="password-title">Enter Supergirl Password</div>
-                """, unsafe_allow_html=True)
+        <div class="password-section">
+            <div class="password-title">Enter Supergirl Password to Continue</div>
+        </div>
+        """, unsafe_allow_html=True)
         
-        # Password input inside the modal
         password = st.text_input("Password:", type="password", placeholder="Enter password (all small 10 chars)", key="supergirl_password")
         
         col1, col2 = st.columns(2)
         with col1:
-            if st.button("Cancel", key="cancel_password", use_container_width=True):
-                st.session_state.show_password_modal = False
+            if st.button("← Back", key="back_from_password", use_container_width=True):
+                st.session_state.show_password_section = False
                 st.rerun()
         with col2:
-            if st.button("Verify", key="verify_password", use_container_width=True):
+            if st.button("Verify & Continue →", key="verify_password", use_container_width=True):
                 if password == "datacentre":
                     st.session_state.current_page = "video"
-                    st.session_state.show_password_modal = False
+                    st.session_state.show_password_section = False
                     st.rerun()
                 else:
-                    st.error("Incorrect password!")
-        
-        st.markdown("</div></div>", unsafe_allow_html=True)
+                    st.error("Incorrect password! Try again.")
+    
+    else:
+        # Regular buttons when password section is not shown
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("← Back to Login", key="back_to_login", use_container_width=True):
+                st.session_state.logged_in = False
+                st.rerun()
+        with col2:
+            if st.button(" 🗝️For our supergirl💰 →", key="next_btn", use_container_width=True):
+                st.session_state.show_password_section = True
+                st.rerun()
     
     # Hidden clue - optimized for brightness-based discovery
     st.markdown("""
@@ -890,7 +844,7 @@ def main():
     if 'logged_in' not in st.session_state:
         st.session_state.logged_in = False
         st.session_state.current_page = "birthday_card"
-        st.session_state.show_password_modal = False
+        st.session_state.show_password_section = False
     
     if st.session_state.logged_in:
         if st.session_state.current_page == "birthday_card":
