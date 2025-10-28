@@ -198,7 +198,7 @@ def birthday_card_page():
             st.session_state.logged_in = False
             st.rerun()
     with col2:
-        if st.button("🎬 For our supergirl →", key="next_btn", use_container_width=True):
+        if st.button(" 🗝️For our supergirl💰 →", key="next_btn", use_container_width=True):
             st.session_state.current_page = "video"
             st.rerun()
     
