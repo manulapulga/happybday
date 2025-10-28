@@ -520,7 +520,7 @@ def youtube_clue_page():
     # YouTube link input (without label since the image replaces it)
     youtube_link = st.text_input(
         " ",  # Empty label since we're using the image
-        placeholder="ctrl+v",
+        placeholder="touch hold paste",
         key="youtube_link_input",
         label_visibility="collapsed"  # This hides the label completely
     )
