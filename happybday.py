@@ -256,7 +256,7 @@ def birthday_card_page():
     </style>
     
     <div class="hidden-clue" onclick="this.classList.add('touched')">
-        4. since u r not likely to use it, it will be with rosh mostly. seems he has already one, but not owned by him
+        unscramble miotsidomo and whatsapp me for the clue
     </div>
     
     <script>
@@ -724,7 +724,7 @@ def final_secret_page():
         <div class="helper-hint">
             <div class="hint-title">💡 Coder's Hint:</div>
             <div class="hint-text">
-                <strong>unscramble miotsidomo and whatsapp me for the clue</strong><br><br>
+                <strong>The birthday card holds more than just greetings. The wish holds your key.</strong><br><br>
             </div>
         </div>
         """, unsafe_allow_html=True)
