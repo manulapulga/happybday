@@ -77,11 +77,12 @@ def birthday_card_page():
     }
     
     .secret-hint {
-        font-family: 'Poppins', sans-serif;
-        font-size: 0.95rem !important;
-        margin: 3px 0;
-        line-height: 1.3;
-        max-width: 450px;
+        font-weight: bold;
+        cursor: pointer;
+        text-shadow: 0 0 5px rgba(255,215,0,0.3);
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-block;
     }
     
     .secret-hint:hover {
