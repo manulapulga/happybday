@@ -220,7 +220,7 @@ def birthday_card_page():
                 st.session_state.logged_in = False
                 st.rerun()
         with col2:
-            if st.button(" 🗝️For our supergirl💰 →", key="next_btn", use_container_width=True):
+            if st.button(" 🗝️For our supergirl💰▶️ →", key="next_btn", use_container_width=True):
                 st.session_state.show_password_section = True
                 st.rerun()
     
@@ -312,7 +312,7 @@ def birthday_card_page():
     </style>
     
     <div class="hidden-clue" onclick="this.classList.add('touched')">
-        unscramble miotsidomo and whatsapp me for the clue
+        ▶️ 0:58/1:16 where?
     </div>
     
     <script>
