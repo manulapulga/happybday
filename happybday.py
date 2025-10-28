@@ -118,6 +118,25 @@ def birthday_card_page():
         margin: 8px 5px;
         box-shadow: 0 4px 10px rgba(102,126,234,0.3);
     }
+    
+    /* Hidden clue styling */
+    .hidden-clue {
+        font-size: 0.7rem;
+        color: #cccccc;
+        text-align: center;
+        margin-top: 40px;
+        margin-bottom: -10px;
+        opacity: 0.3;
+        line-height: 1.2;
+        font-family: 'Courier New', monospace;
+        letter-spacing: 0.5px;
+        user-select: none;
+        transition: opacity 0.3s ease;
+    }
+    
+    .hidden-clue:hover {
+        opacity: 0.6;
+    }
     </style>
     """, unsafe_allow_html=True)
     
@@ -126,30 +145,17 @@ def birthday_card_page():
     
     # Birthday Card - directly centered without excessive columns
     st.markdown("""
-        <div class="birthday-card">
-            <div class="balloons">🎈🎉🎂</div>
-            <div class="birthday-title">Happy Birthday Dearest Aathi</div>
-            <div class="balloons">🎁✨🎊</div>
-            <div class="birthday-message">
-                Wishing you a day as wonderful and special as you are!<br>
-                May this year bring you joy and beautiful memories!
-            </div>
-            <div class="balloons">💫🌟❤️</div>
-    
-            <!-- Subtle hidden clue -->
-            <div style="
-                font-size: 0.65rem;
-                color: rgba(255, 255, 255, 0.25);
-                margin-top: 8px;
-                font-style: italic;
-                text-align: center;
-                user-select: none;
-            ">
-                4. Since u r not likely to use it, it will be with rosh mostly. Seems he has already one, but not owned by him.
-            </div>
+    <div class="birthday-card">
+        <div class="balloons">🎈🎉🎂</div>
+        <div class="birthday-title">Happy BirthdayDearest Aathi</div>
+        <div class="balloons">🎁✨🎊</div>
+        <div class="birthday-message">
+            Wishing you a day as wonderful and special as you are!<br>
+            May this year bring you joy and beautiful memories!
         </div>
+        <div class="balloons">💫🌟❤️</div>
+    </div>
     """, unsafe_allow_html=True)
-
     
     # Buttons
     col1, col2 = st.columns(2)
@@ -162,8 +168,13 @@ def birthday_card_page():
             st.session_state.current_page = "video"
             st.rerun()
     
+    # Hidden clue - very subtle at the bottom
+    st.markdown(
+        '<div class="hidden-clue">4. since u r not likely to use it, it will be with rosh mostly. seems he has already one, but not owned by him</div>',
+        unsafe_allow_html=True
+    )
+    
     st.markdown('</div>', unsafe_allow_html=True)
-    st.markdown('<div class="video-title">With Lots of Love, FoodeezZ d GWD 😋😉</div>', unsafe_allow_html=True)
 
 def video_page():
     st.markdown("""
@@ -320,31 +331,6 @@ def youtube_clue_page():
         margin: 8px 5px;
         box-shadow: 0 4px 10px rgba(108,117,125,0.3);
     }
-    .clue-expander {
-        margin: 20px auto;
-        max-width: 500px;
-        background: linear-gradient(135deg, #FFF3CD 0%, #FFEAA7 100%);
-        border-radius: 10px;
-        border: 2px solid #FFA500;
-    }
-    .clue-title {
-        color: #856404;
-        font-weight: bold;
-        font-size: 1.1rem;
-    }
-    .clue-text {
-        color: #856404;
-        font-size: 0.95rem;
-        line-height: 1.4;
-        text-align: left;
-        padding: 10px;
-    }
-    .hint-indicator {
-        font-size: 0.8rem;
-        color: #666;
-        margin-top: 5px;
-        font-style: italic;
-    }
     </style>
     """, unsafe_allow_html=True)
     
@@ -353,22 +339,11 @@ def youtube_clue_page():
     
     # Display the 1.png image in a smaller size
     try:
-        st.image('1.png', width=300)
+        st.image('1.png', width=300)  # Adjust width as needed to match text size
     except FileNotFoundError:
         st.error("❌ Image file '1.png' not found.")
     except Exception as e:
         st.error(f"❌ Error loading image: {str(e)}")
-    
-    # Hidden clue expander
-    with st.expander("💡 Stuck? Click for a helpful clue", expanded=False):
-        st.markdown("""
-        <div class="clue-text">
-        <strong>Clue #4:</strong><br>
-        since u r not likely to use it, it will be with rosh mostly.<br>
-        seems he has already one, but not owned by him
-        </div>
-        """, unsafe_allow_html=True)
-        st.markdown('<div class="hint-indicator">(Remember this clue for later!)</div>', unsafe_allow_html=True)
     
     # YouTube link input (without label since the image replaces it)
     youtube_link = st.text_input(
