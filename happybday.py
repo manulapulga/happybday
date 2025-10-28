@@ -121,7 +121,7 @@ def birthday_card_page():
     
     /* Hidden clue styling */
     .hidden-clue {
-        font-size: 0.7rem;
+        font-size: 2rem;
         color: #cccccc;
         text-align: center;
         margin-top: 40px;
@@ -131,7 +131,7 @@ def birthday_card_page():
         font-family: 'Courier New', monospace;
         letter-spacing: 0.5px;
         user-select: none;
-        transition: opacity 0.3s ease;
+        transition: opacity 0.5s ease;
     }
     
     .hidden-clue:hover {
