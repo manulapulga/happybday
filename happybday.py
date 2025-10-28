@@ -151,7 +151,7 @@ def birthday_card_page():
         <div class="balloons">🎁✨🎊</div>
         <div class="birthday-message">
             Wishing you a day as wonderful and special as you are!<br>
-            May your birthday be as special as the secret hidden down there, waiting for your gentle touch!
+            May your birthday be as special as the secret hidden down here, waiting for your gentle touch!
         </div>
         <div class="balloons">💫🌟❤️</div>
     </div>
