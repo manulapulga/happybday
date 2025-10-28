@@ -363,7 +363,7 @@ def video_page():
     }
     .video-container {
         margin: 10px auto;
-        max-width: 500px;
+        max-width: 200px;
         border-radius: 15px;
         overflow: hidden;
         box-shadow: 0 8px 20px rgba(0,0,0,0.15);
