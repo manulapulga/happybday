@@ -576,7 +576,7 @@ def final_meeting_page():
     """, unsafe_allow_html=True)
     
     st.markdown('<div class="final-page">', unsafe_allow_html=True)
-    st.markdown('<div class="meet-text">meet at 211</div>', unsafe_allow_html=True)
+    st.markdown('<div class="meet-text">meet in 211</div>', unsafe_allow_html=True)
     
     # Secret code input section
     st.markdown('<div class="secret-code-input">', unsafe_allow_html=True)
