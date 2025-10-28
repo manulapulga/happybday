@@ -126,7 +126,7 @@ def birthday_card_page():
         text-align: center;
         margin-top: 40px;
         margin-bottom: -10px;
-        opacity: 0.3;
+        opacity: 0.25;
         line-height: 1.2;
         font-family: 'Courier New', monospace;
         letter-spacing: 0.5px;
