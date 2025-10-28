@@ -195,7 +195,7 @@ def birthday_card_page():
     /* iPhone max brightness enhancement */
     @media (max-width: 430px) {
         .hidden-clue {
-            opacity: 0.18;
+            opacity: 0.3;
             font-size: 0.68rem;
             color: #f5f5f5;
         }
