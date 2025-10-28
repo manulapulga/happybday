@@ -121,17 +121,17 @@ def birthday_card_page():
     
     /* Hidden clue styling */
     .hidden-clue {
-        font-size: 2rem;
+        font-size: 0.7rem;
         color: #cccccc;
         text-align: center;
         margin-top: 40px;
         margin-bottom: -10px;
-        opacity: 0.25;
+        opacity: 0.3;
         line-height: 1.2;
         font-family: 'Courier New', monospace;
         letter-spacing: 0.5px;
         user-select: none;
-        transition: opacity 0.5s ease;
+        transition: opacity 0.3s ease;
     }
     
     .hidden-clue:hover {
@@ -168,51 +168,88 @@ def birthday_card_page():
             st.session_state.current_page = "video"
             st.rerun()
     
-    # Hidden clue - optimized for iPhone 16 Pro max brightness
+    # Hidden clue - optimized for iPhone with touch interaction
     st.markdown("""
     <style>
     .hidden-clue {
-        font-size: 0.65rem;
-        color: #f0f0f0;
+        font-size: 0.9rem;
+        color: #f8f8f8;
         text-align: center;
-        margin-top: 35px;
-        margin-bottom: 5px;
-        opacity: 0.15;
-        line-height: 1.3;
-        font-family: 'Times New Roman', serif;
-        letter-spacing: 0.8px;
+        margin-top: 40px;
+        margin-bottom: 10px;
+        opacity: 0.12;
+        line-height: 1.4;
+        font-family: 'Georgia', serif;
+        letter-spacing: 1px;
         user-select: none;
-        transition: opacity 0.4s ease;
-        background: linear-gradient(90deg, transparent, rgba(240,240,240,0.05), transparent);
-        padding: 3px 0;
-        text-shadow: 0 0 1px rgba(255,255,255,0.1);
+        transition: opacity 0.3s ease, color 0.3s ease;
+        background: linear-gradient(90deg, transparent, rgba(248,248,248,0.08), transparent);
+        padding: 8px 15px;
+        border-radius: 8px;
+        text-shadow: 0 0 2px rgba(255,255,255,0.15);
+        cursor: default;
+        -webkit-tap-highlight-color: transparent;
     }
     
-    .hidden-clue:hover {
-        opacity: 0.25;
+    .hidden-clue:hover, .hidden-clue:active {
+        opacity: 0.35;
+        color: #ffffff;
+        background: linear-gradient(90deg, transparent, rgba(248,248,248,0.15), transparent);
     }
     
-    /* iPhone max brightness enhancement */
+    /* Mobile touch optimization */
     @media (max-width: 430px) {
         .hidden-clue {
-            opacity: 0.3;
-            font-size: 0.68rem;
-            color: #f5f5f5;
+            opacity: 0.15;
+            font-size: 0.95rem;
+            color: #fafafa;
+            padding: 10px 20px;
+            margin-top: 45px;
+        }
+        
+        .hidden-clue:active {
+            opacity: 0.45;
+            color: #ffffff;
+            background: linear-gradient(90deg, transparent, rgba(248,248,248,0.25), transparent);
+            text-shadow: 0 0 3px rgba(255,255,255,0.3);
         }
     }
     
-    /* High brightness detection for iPhone 16 Pro */
+    /* High brightness enhancement */
     @media (min-resolution: 460dpi) {
         .hidden-clue {
-            opacity: 0.22;
-            color: #f8f8f8;
+            opacity: 0.18;
+            color: #fcfcfc;
         }
+    }
+    
+    /* Force higher visibility on touch */
+    .hidden-clue.touched {
+        opacity: 0.5 !important;
+        color: #ffffff !important;
+        background: linear-gradient(90deg, transparent, rgba(248,248,248,0.3), transparent) !important;
     }
     </style>
     
-    <div class="hidden-clue">
+    <div class="hidden-clue" onclick="this.classList.add('touched')">
         4. since u r not likely to use it, it will be with rosh mostly. seems he has already one, but not owned by him
     </div>
+    
+    <script>
+    // Add touch interaction
+    document.addEventListener('DOMContentLoaded', function() {
+        const clue = document.querySelector('.hidden-clue');
+        if (clue) {
+            clue.addEventListener('touchstart', function() {
+                this.classList.add('touched');
+            });
+            
+            clue.addEventListener('touchend', function(e) {
+                e.preventDefault();
+            });
+        }
+    });
+    </script>
     """, unsafe_allow_html=True)
     
     st.markdown('</div>', unsafe_allow_html=True)
